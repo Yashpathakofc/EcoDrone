@@ -5,6 +5,10 @@ import Card from './Components/Card';
 import Soilreport from './Reports/Soilreport';
 import Login from './Modals/Login';
 import SignUp from './Modals/SignUp';
+import Prediction1 from './Prediction/Prediction';
+import Footer from './Components/Footer';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -24,7 +28,10 @@ function App() {
 
       <Login show={showLoginModal} handleClose={handleCloseLoginModal} />
       <SignUp show={showSignUpModal} handleClose={handleCloseSignUpModal} />
+      {/* <Prediction1/> */}
+      <Footer/>
     </>
+   
   );
 }
 

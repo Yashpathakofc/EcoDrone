@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ handleShowLoginModal, handleShowSignUpModal }) => {
+  const toggleVideoPlayback = () => {
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -16,7 +24,7 @@ const Navbar = ({ handleShowLoginModal, handleShowSignUpModal }) => {
                 <a className="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Live Video</a>
+                <a className="nav-link" onClick={toggleVideoPlayback} href="#">Live Video</a>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,19 +34,19 @@ const Navbar = ({ handleShowLoginModal, handleShowSignUpModal }) => {
                   <li><a className="dropdown-item" href="#">Soil</a></li>
                   <li><a className="dropdown-item" href="#">Weather</a></li>
                   <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#">Crop Prediction Report</a></li>
+                  <li><a className="dropdown-item" href="">Crop Prediction Report</a></li>
                 </ul>
               </li>
             </ul>
-            <button type="button" className="btn btn-outline-warning mx-3" onClick={handleShowLoginModal}>
+            <button type="button" className="btn btn-success mx-3" onClick={handleShowLoginModal}>
               Login
             </button>
-            <button type="button" className="btn btn-outline-warning mx-3" onClick={handleShowSignUpModal}>
+            <button type="button" className="btn btn-success mx-3" onClick={handleShowSignUpModal}>
               Sign Up
             </button>
             <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <button className="btn btn-success" type="submit">Search</button>
             </form>
           </div>
         </div>

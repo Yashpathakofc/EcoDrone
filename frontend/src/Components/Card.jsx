@@ -57,28 +57,28 @@ const Card = () => {
 
       <div className="rounded" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
         <div className="card mt-5 mx-3" style={{ width: "18rem" }}>
-          <img src="moisture.jpg" className="card-img-top card-img" alt="moisture" height={175} />
+          <img src="moisture.jpg" className="card-img-top card-img" alt="moisture" height={185} />
           <div className="card-body">
             <button className="btn btn-primary col-6" onClick={humid}>Humidity</button>
             <p className='mt-2 temperature-1' style={{ color: humidity.color }}>{humidity.level}</p>
           </div>
         </div>
         <div className="card mt-5 mx-3" style={{ width: "18rem" }}>
-          <img src="crop_temp.jpg" className="card-img-top card-img" alt="moisture" height={175} />
+          <img src="crop_temp.jpg" className="card-img-top card-img" alt="moisture" height={185} />
           <div className="card-body">
             <button className="btn btn-primary col-6" onClick={showTemp}>Temperature</button>
             <p className='mt-2 temperature-1'>{temperature} °F</p>
           </div>
         </div>
         <div className="card mt-5 mx-3" style={{ width: "18rem" }} aria-hidden="true">
-          <img src="npk.png" className="card-img-top card-img" alt="moisture" height={175} />
+          <img src="npk.png" className="card-img-top card-img" alt="moisture" height={185} />
           <div className="card-body">
             <button className="btn btn-primary col-6" onClick={showNPK}>NPK Levels</button>
             <p className='mt-2 temperature-1' style={{ color: NPK.color }}>{NPK.level}</p>
           </div>
         </div>
         <div className="card mt-5 mx-3" style={{ width: "18rem" }} aria-hidden="true">
-          <video ref={videoRef} className="card-video1" loop height={175}>
+          <video ref={videoRef} className="card-video1" loop height={185}>
             <source src="video13.mp4" type="video/mp4" />
           </video>
           <div className="card-body">

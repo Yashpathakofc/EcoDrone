@@ -1,53 +1,83 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
+import "./login.css";
 
 const Login = ({ show, handleClose }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputUsername, setInputUsername] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email, 'Password:', password);
-    handleClose();
+    setLoading(true);
+    await delay(500);
+    console.log(`Username :${inputUsername}, Password :${inputPassword}`);
+    if (inputUsername !== "admin" || inputPassword !== "admin") {
+      setShowAlert(true);
+    }
+    setLoading(false);
   };
 
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleLogin}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+        <Form onSubmit={handleSubmit}>
+          {showAlert && (
+            <Alert
+              variant="danger"
+              onClose={() => setShowAlert(false)}
+              dismissible
+            >
+              Incorrect username or password.
+            </Alert>
+          )}
+          <Form.Group className="mb-2" controlId="username">
+            <Form.Label>Username</Form.Label>
             <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={inputUsername}
+              placeholder="abc@gmail.com"
+              onChange={(e) => setInputUsername(e.target.value)}
               required
             />
           </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group className="mb-2" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={inputPassword}
+              placeholder="******"
+              onChange={(e) => setInputPassword(e.target.value)}
               required
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Login
+          <Form.Group className="mb-2 " controlId="checkbox">
+            <Form.Check type="checkbox" label="Remember me" />
+          </Form.Group>
+          <Button className="w-100" variant="primary" type="submit" disabled={loading}>
+            {loading ? "Logging In..." : "Log In"}
           </Button>
+          <div className="d-grid justify-content-end">
+            <Button
+              className="text-muted px-0"
+              variant="link"
+              onClick={() => {}}
+            >
+              Forgot password?
+            </Button>
+          </div>
         </Form>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default Login    ;
+export default Login;
